@@ -37,7 +37,8 @@ public class AuthServer {
             }
         }
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+                int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", AuthServer::handleHome);
         server.createContext("/auth", AuthServer::handleAuth);
         server.createContext("/approve", AuthServer::handleApprove);
